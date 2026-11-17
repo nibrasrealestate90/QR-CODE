@@ -14,6 +14,16 @@ test('Cloudflare Pages _headers file exists and specifies security & cache heade
   assert.match(content, /X-Content-Type-Options:\s*nosniff/i, 'Must contain nosniff header');
   assert.match(content, /X-Frame-Options:\s*DENY/i, 'Must contain X-Frame-Options header');
   assert.match(content, /Cache-Control/i, 'Must specify Cache-Control headers');
+  assert.match(content, /\n\/\s*\n\s*Cache-Control:\s*public,\s*max-age=0/i, 'Must specify Cache-Control for root / path');
+});
+
+test('package.json declares playwright and tests/run-e2e.js has no hardcoded absolute user paths', () => {
+  const pkgPath = path.join(rootDir, 'package.json');
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+  assert.ok(pkg.devDependencies && pkg.devDependencies.playwright, 'package.json must declare playwright in devDependencies');
+
+  const e2eCode = fs.readFileSync(path.join(rootDir, 'tests', 'run-e2e.js'), 'utf8');
+  assert.strictEqual(e2eCode.includes('/Users/subhamsantra'), false, 'tests/run-e2e.js must not contain hardcoded machine paths');
 });
 
 test('wrangler.toml exists and specifies pages_build_output_dir', () => {

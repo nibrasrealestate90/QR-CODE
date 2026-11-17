@@ -15,7 +15,8 @@ test('index.html contains valid SEO and Open Graph metadata', () => {
   assert.match(content, /<meta\s+name=["']description["']/i, 'Meta description must exist');
   assert.match(content, /<meta\s+property=["']og:title["']/i, 'og:title must exist');
   assert.match(content, /<meta\s+property=["']og:description["']/i, 'og:description must exist');
-  assert.match(content, /<meta\s+property=["']og:image["']/i, 'og:image must exist');
+  assert.match(content, /<meta\s+property=["']og:image["']\s+content=["']https:\/\/[^"']+["']/i, 'og:image must be an absolute URL with https://');
+  assert.match(content, /<meta\s+name=["']twitter:image["']\s+content=["']https:\/\/[^"']+["']/i, 'twitter:image must be an absolute URL with https://');
   assert.match(content, /<link\s+rel=["']icon["']/i, 'Favicon link must exist');
 });
 

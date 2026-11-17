@@ -16,6 +16,18 @@ test('style.css defines essential design tokens and CSS custom properties', () =
   assert.match(content, /--accent-whatsapp/, 'Must define --accent-whatsapp token');
   assert.match(content, /--card-bg/, 'Must define --card-bg token');
   assert.match(content, /--border-color/, 'Must define --border-color token');
+  assert.match(content, /--text-muted:\s*#555A64/i, '--text-muted must meet WCAG contrast standard (>= 4.5:1)');
+});
+
+test('style.css ensures label wrapping and mobile size to prevent text truncation', () => {
+  const content = fs.readFileSync(cssPath, 'utf8');
+  assert.match(content, /\.action-label\s*\{[^}]*white-space:\s*normal/i, '.action-label must allow natural wrapping');
+  assert.match(content, /max-width:\s*380px[^}]*\.action-label/s, 'Must have compact screen sizing for action-label');
+});
+
+test('style.css implements resilient safe-area body padding using max()', () => {
+  const content = fs.readFileSync(cssPath, 'utf8');
+  assert.match(content, /padding:\s*max\(\s*24px\s*,\s*env\(\s*safe-area-inset-top\s*\)\s*\)/i, 'Body padding must use max() for safe-area insets');
 });
 
 test('style.css implements prominent styling for WhatsApp', () => {

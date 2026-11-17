@@ -3,16 +3,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert');
 
-// Resolve playwright from local or neighbor node_modules
+// Resolve playwright from project or parent node_modules cleanly
 let playwright;
 try {
   playwright = require('playwright');
 } catch (e) {
-  try {
-    playwright = require(path.resolve(__dirname, '../../3D PRINTING/node_modules/playwright'));
-  } catch (err) {
-    playwright = require('/Users/subhamsantra/Desktop/Dashboard/3D PRINTING/node_modules/playwright');
-  }
+  playwright = require(path.resolve(__dirname, '../../3D PRINTING/node_modules/playwright'));
 }
 
 const MIME_TYPES = {

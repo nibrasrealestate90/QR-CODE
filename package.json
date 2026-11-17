@@ -9,6 +9,9 @@
     "preview": "npx serve . -l 3000",
     "build": "echo 'Static build complete - files ready in root directory for Cloudflare Pages'"
   },
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  },
   "keywords": [
     "3d-studio-dubai",
     "3d-printing",
