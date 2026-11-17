@@ -1,0 +1,533 @@
+/**
+ * 3D Studio Dubai – Social Media Landing Page
+ * Premium, minimal, contemporary design system.
+ */
+
+:root {
+  /* Surface & Canvas Tokens */
+  --bg-primary: #F8F9FA;
+  --bg-secondary: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --card-bg-hover: #FDFDFE;
+  --border-color: rgba(18, 19, 22, 0.08);
+  --border-color-hover: rgba(18, 19, 22, 0.16);
+
+  /* Typography Colors */
+  --text-primary: #121316;
+  --text-secondary: #555A64;
+  --text-muted: #828894;
+  --text-inverted: #FFFFFF;
+
+  /* Brand & Accent Tokens */
+  --accent-whatsapp: #25D366;
+  --accent-whatsapp-dark: #128C7E;
+  --accent-whatsapp-subtle: rgba(37, 211, 102, 0.10);
+  --accent-instagram: #E1306C;
+  --accent-facebook: #1877F2;
+
+  /* Elevation & 3D Lighting Shadows */
+  --shadow-sm: 0 2px 4px rgba(18, 19, 22, 0.04), 0 1px 2px rgba(18, 19, 22, 0.03);
+  --shadow-md: 0 8px 24px -4px rgba(18, 19, 22, 0.06), 0 2px 6px -1px rgba(18, 19, 22, 0.04);
+  --shadow-hover: 0 16px 32px -6px rgba(18, 19, 22, 0.10), 0 4px 12px -2px rgba(18, 19, 22, 0.06);
+  --shadow-prominent: 0 12px 30px -4px rgba(37, 211, 102, 0.18), 0 4px 10px rgba(18, 19, 22, 0.05);
+  --shadow-prominent-hover: 0 18px 36px -4px rgba(37, 211, 102, 0.28), 0 6px 14px rgba(18, 19, 22, 0.08);
+
+  /* Geometry Tokens */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-smooth: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  position: relative;
+  overflow-x: hidden;
+  padding: env(safe-area-inset-top, 24px) 16px env(safe-area-inset-bottom, 24px) 16px;
+}
+
+/* Ambient 3D Geometric Atmosphere */
+.ambient-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(18, 19, 22, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 19, 22, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
+}
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.glow-top {
+  width: 320px;
+  height: 320px;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(252, 91, 23, 0.07) 0%, rgba(0, 131, 251, 0.05) 50%, transparent 70%);
+}
+
+.glow-bottom {
+  width: 400px;
+  height: 250px;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(37, 211, 102, 0.06) 0%, transparent 70%);
+}
+
+.isometric-wireframe {
+  position: absolute;
+  top: 8%;
+  right: -20px;
+  width: 140px;
+  height: 140px;
+  color: rgba(18, 19, 22, 0.06);
+  transform: rotate(15deg);
+}
+
+/* Page Layout */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 24px 20px;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.logo-container {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-elevation-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #FFFFFF, #EEF0F2);
+  border: 1px solid rgba(18, 19, 22, 0.06);
+  box-shadow: 
+    0 10px 25px -4px rgba(18, 19, 22, 0.08),
+    0 4px 8px -2px rgba(18, 19, 22, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  z-index: 0;
+}
+
+.brand-logo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 26px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.04));
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.03);
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(18, 19, 22, 0.04);
+  border: 1px solid rgba(18, 19, 22, 0.06);
+  padding: 5px 13px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.status-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-whatsapp);
+  box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.25);
+  animation: pulse 2.4s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 5px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.status-text {
+  font-size: 0.775rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* Hero Typography */
+.hero-title {
+  font-size: clamp(1.85rem, 5vw, 2.25rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 360px;
+  line-height: 1.5;
+  font-weight: 450;
+}
+
+/* Action Buttons Section */
+.actions-section {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.social-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Full-Width Action Cards */
+.action-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 72px;
+  padding: 14px 18px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-color-hover);
+  background-color: var(--card-bg-hover);
+}
+
+.action-card:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Icon Containers */
+.card-icon-wrapper {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.action-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.action-card:hover .action-icon {
+  transform: scale(1.08);
+}
+
+/* Platform-Specific Icon Colors */
+.whatsapp-icon-bg {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
+.instagram-icon-bg {
+  background: linear-gradient(135deg, #F9ED32 0%, #EE2A7B 50%, #9B27B0 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(238, 42, 123, 0.20);
+}
+
+.facebook-icon-bg {
+  background: linear-gradient(135deg, #1877F2, #0C5DC7);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.20);
+}
+
+/* Card Content Area */
+.card-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action-subtext {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Priority Badge for Prominent WhatsApp */
+.priority-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-whatsapp-subtle);
+  color: #0E7F47;
+  border: 1px solid rgba(37, 211, 102, 0.25);
+}
+
+/* Chevron */
+.card-chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-chevron svg {
+  width: 100%;
+  height: 100%;
+}
+
+.action-card:hover .card-chevron {
+  color: var(--text-primary);
+  transform: translateX(3px);
+}
+
+/* Visually Prominent WhatsApp Button */
+.action-card--prominent {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5FBF7 100%);
+  border: 1.5px solid rgba(37, 211, 102, 0.35);
+  box-shadow: var(--shadow-prominent);
+}
+
+.action-card--prominent:hover {
+  background: linear-gradient(180deg, #FFFFFF 0%, #EDF9F1 100%);
+  border-color: rgba(37, 211, 102, 0.55);
+  box-shadow: var(--shadow-prominent-hover);
+  transform: translateY(-3px);
+}
+
+.action-card--prominent .card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-whatsapp), transparent);
+  opacity: 0.8;
+}
+
+/* Focus Visible for Accessibility */
+.action-card:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+/* Footer Section */
+.page-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding-top: 16px;
+}
+
+.footer-divider {
+  width: 48px;
+  height: 2px;
+  background-color: rgba(18, 19, 22, 0.08);
+  border-radius: var(--radius-full);
+  margin-bottom: 18px;
+}
+
+.footer-brand {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.footer-tagline {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 450;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 400px) {
+  .main-card {
+    padding: 24px 12px 20px 12px;
+  }
+
+  .action-card {
+    padding: 12px 14px;
+    gap: 12px;
+    min-height: 68px;
+  }
+
+  .card-icon-wrapper {
+    width: 44px;
+    height: 44px;
+  }
+
+  .action-label {
+    font-size: 0.9375rem;
+  }
+
+  .action-subtext {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .page-wrapper {
+    max-width: 500px;
+  }
+  
+  .main-card {
+    padding: 44px 32px 32px 32px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(18, 19, 22, 0.06);
+    border-radius: 28px;
+    box-shadow: 
+      0 20px 40px -10px rgba(18, 19, 22, 0.05),
+      0 1px 3px rgba(18, 19, 22, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
