@@ -1,0 +1,20 @@
+{
+  "name": "3d-studio-dubai-landing-page",
+  "version": "1.0.0",
+  "description": "Premium mobile-first QR code social media landing page for 3D Studio Dubai",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:e2e": "node tests/run-e2e.js",
+    "preview": "npx serve . -l 3000",
+    "build": "echo 'Static build complete - files ready in root directory for Cloudflare Pages'"
+  },
+  "keywords": [
+    "3d-studio-dubai",
+    "3d-printing",
+    "landing-page",
+    "cloudflare-pages"
+  ],
+  "author": "3D Studio Dubai",
+  "license": "UNLICENSED"
+}
