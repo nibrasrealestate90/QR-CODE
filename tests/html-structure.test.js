@@ -52,9 +52,9 @@ test('index.html contains all 3 social buttons with exact links, targets, and re
   }
 });
 
-test('index.html footer contains brand tagline and copyright', () => {
+test('index.html removes AI slop pill and verbose footer as requested', () => {
   const content = fs.readFileSync(htmlPath, 'utf8');
-  assert.match(content, /3D Studio Dubai/i, 'Footer must contain brand name');
-  assert.match(content, /Designed with creativity\.\s*Made with precision\./i, 'Footer must contain exact tagline');
-  assert.match(content, /&copy;|\u00A9/i, 'Footer must contain copyright notice');
+  assert.strictEqual(content.includes('Dubai, UAE • 3D Precision Studio'), false, 'Status pill must be removed');
+  assert.strictEqual(content.includes('Designed with creativity. Made with precision.'), false, 'Footer tagline must be removed');
+  assert.strictEqual(content.includes('All rights reserved'), false, 'Verbose copyright text must be removed');
 });

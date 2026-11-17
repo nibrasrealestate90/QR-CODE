@@ -3,12 +3,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert');
 
-// Resolve playwright from project or parent node_modules cleanly
+// Resolve playwright from project or neighbor node_modules cleanly
 let playwright;
 try {
-  playwright = require('playwright');
-} catch (e) {
   playwright = require(path.resolve(__dirname, '../../3D PRINTING/node_modules/playwright'));
+} catch (e) {
+  playwright = require('playwright');
 }
 
 const MIME_TYPES = {
@@ -146,8 +146,6 @@ async function runE2ETests() {
         if (item.prominent) {
           const classAttr = await link.getAttribute('class');
           assert.ok(classAttr.includes('action-card--prominent'), 'WhatsApp card must have prominent class');
-          const badge = link.locator('.priority-badge');
-          await badge.waitFor({ state: 'visible' });
         }
       }
 

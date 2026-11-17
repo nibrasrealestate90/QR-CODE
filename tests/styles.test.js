@@ -33,7 +33,6 @@ test('style.css implements resilient safe-area body padding using max()', () => 
 test('style.css implements prominent styling for WhatsApp', () => {
   const content = fs.readFileSync(cssPath, 'utf8');
   assert.match(content, /\.action-card--prominent|\.action-card--whatsapp/, 'Must define prominent WhatsApp styles');
-  assert.match(content, /\.priority-badge/, 'Must define priority-badge styling');
 });
 
 test('style.css implements accessible focus rings and reduced-motion queries', () => {
